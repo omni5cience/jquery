@@ -6,7 +6,7 @@ test("sanity check", function() {
 });
 
 test("show()", function() {
-	expect(28);
+	expect(29);
 
 	var hiddendiv = jQuery("div.hidden");
 
@@ -93,6 +93,11 @@ test("show()", function() {
 	// Make sure that showing or hiding a text node doesn't cause an error
 	jQuery("<div>test</div> text <span>test</span>").show().remove();
 	jQuery("<div>test</div> text <span>test</span>").hide().remove();
+
+	// Make sure elements maintain their correct display type after hiding/showing
+	var span = jQuery("<span style='display:block;'>test</span>").hide().show();
+	equals( "block", span.css("display") );
+	span.remove();
 });
 
 test("show(Number) - other displays", function() {
